@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2020_Nhom16_TH1_18120634.DataAccessLayer
+namespace _2020_Nhom16_TH1_18120634.DAL
 {
   class DataProvider
   {
@@ -35,15 +35,22 @@ namespace _2020_Nhom16_TH1_18120634.DataAccessLayer
     public DataTable ExecuteQuerySql(string query)
     {
       DataTable dataResult = new DataTable();
-      using (SqlConnection connection = new SqlConnection(this.connectionStr))
+      try
       {
-        connection.Open();
+        using (SqlConnection connection = new SqlConnection(this.connectionStr))
+        {
+          connection.Open();
 
-        SqlCommand command = new SqlCommand(query, connection);
-        SqlDataAdapter sda = new SqlDataAdapter(command);
-        sda.Fill(dataResult);
+          SqlCommand command = new SqlCommand(query, connection);
+          SqlDataAdapter sda = new SqlDataAdapter(command);
+          sda.Fill(dataResult);
 
-        connection.Close();
+          connection.Close();
+        }
+      }
+      catch(Exception exc)
+      {
+        throw exc;
       }
       return dataResult;
     }
@@ -52,14 +59,21 @@ namespace _2020_Nhom16_TH1_18120634.DataAccessLayer
     public int ExecuteNoQuerySql(string query)
     {
       int nModified = 0;
-      using (SqlConnection connection = new SqlConnection(this.connectionStr))
+      try
       {
-        connection.Open();
+        using (SqlConnection connection = new SqlConnection(this.connectionStr))
+        {
+          connection.Open();
 
-        SqlCommand command = new SqlCommand(query, connection);
-        nModified = command.ExecuteNonQuery();
+          SqlCommand command = new SqlCommand(query, connection);
+          nModified = command.ExecuteNonQuery();
 
-        connection.Close();
+          connection.Close();
+        }
+      }
+      catch(Exception exc)
+      {
+        throw exc;
       }
       return nModified;
     }
@@ -68,14 +82,21 @@ namespace _2020_Nhom16_TH1_18120634.DataAccessLayer
     public object ExecutScalarSql(string query)
     {
       object dataResult = null;
-      using (SqlConnection connection = new SqlConnection(this.connectionStr))
+      try
       {
-        connection.Open();
+        using (SqlConnection connection = new SqlConnection(this.connectionStr))
+        {
+          connection.Open();
 
-        SqlCommand command = new SqlCommand(query, connection);
-        dataResult = command.ExecuteScalar();
+          SqlCommand command = new SqlCommand(query, connection);
+          dataResult = command.ExecuteScalar();
 
-        connection.Close();
+          connection.Close();
+        }
+      }
+      catch(Exception ex)
+      {
+        throw ex;
       }
       return dataResult;
     }

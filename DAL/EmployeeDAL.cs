@@ -90,7 +90,7 @@ namespace _2020_Nhom16_TH1_18120634.DAL
     {
       try
       {
-        string query = $"EXEC [dbo].[UpdateRate] @EmployeeId = {employeeId}, @Rate = {rate}, @UpdateDate = \"{updateDate}\", @PayFreq = {payFreq}";
+        string query = $"EXEC [dbo].[Sp_UpdateRate] @EmployeeId = {employeeId}, @Rate = {rate}, @UpdateDate = \"{updateDate}\", @PayFreq = {payFreq}";
         int result = DataProvider.Instance.ExecuteNoQuerySql(query);
         return result > 0;
       }
@@ -120,8 +120,78 @@ namespace _2020_Nhom16_TH1_18120634.DAL
     {
       try
       {
-        string query = $@"EXEC [dbo].[SearchEmployee] @departmentId = {departmentId}, @shiftId = {shiftId}, @gender = {gender}";
+        string query = $@"EXEC [dbo].[Sp_SearchEmployee] @departmentId = {departmentId}, @shiftId = {shiftId}, @gender = {gender}";
         return DataProvider.Instance.ExecuteQuerySql(query);
+      }
+      catch (Exception exc)
+      {
+        Helper.Instance.ShowErrorDatabase();
+        throw;
+      }
+    }
+    
+    //lấy danh sách năm thống kê
+    public DataTable GetStatisticYearList()
+    {
+      try
+      {
+        string query = @"EXEC [dbo].[Sp_GetStatisticYearList]";
+        return DataProvider.Instance.ExecuteQuerySql(query);
+      }
+      catch (Exception exc)
+      {
+        Helper.Instance.ShowErrorDatabase("Warning", "Không thể lấy danh sách năm thống kê");
+        throw;
+      }
+    }
+    
+    //Kiểm tra 1 nhân viên có tồn tại
+    public bool isExistEmployee(string employeeId)
+    {
+      try
+      {
+        object isExist = DataProvider.Instance.ExecutScalarSql($@"EXEC [dbo].[Sp_IsExistEmployee] @employeeId = {employeeId}");
+        //nhân viên không tồn tại
+        if (isExist.ToString() != "1")
+        {
+          MessageBox.Show($"Không tồn tại nhân viên có id = {employeeId}");
+          return false;
+        }
+        return true;
+      }
+      catch (Exception)
+      {
+        Helper.Instance.ShowErrorDatabase();
+        throw;
+      }
+    }
+
+    //Thống kê lương 1 nhân viên trong 1 năm
+    public DataTable GetSalaryInYear(string employeeId, string year)
+    {
+      try
+      {
+        if (!isExistEmployee(employeeId))
+          return null;
+        string query = $@"SELECT {year} AS N'Năm', [dbo].[GetSalaryEmployee]({employeeId}, {year}) AS N'Tổng lương'";
+        return (DataProvider.Instance.ExecuteQuerySql(query));   
+      }
+      catch (Exception exc)
+      {
+        Helper.Instance.ShowErrorDatabase();
+        throw;
+      }
+    }
+
+    //Thống kê lương 1 nhân viên trong từng năm
+    public DataTable GetSalaryEachForYear(string employeeId)
+    {
+      try
+      {
+        if (!isExistEmployee(employeeId))
+          return null;
+        string query = $@"EXEC [dbo].[Sp_SalaryStatisticEachYear] @employeeId = {employeeId}";
+        return (DataProvider.Instance.ExecuteQuerySql(query));
       }
       catch (Exception exc)
       {

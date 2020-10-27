@@ -47,11 +47,10 @@ namespace _2020_Nhom16_TH1_18120634.DAL
         DataTable queryRes = DataProvider.Instance.ExecuteQuerySql(query);
         foreach (DataRow item in queryRes.Rows)
         {
-          
           Shift shift = new Shift(Convert.ToInt32(item["ShiftID"]), item["Name"].ToString());
           result.Add(shift);
         }
-
+        result.Add(new Shift(result.Count + 1, "All"));
         return result;
       }
       catch (Exception exc)

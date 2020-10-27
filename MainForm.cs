@@ -51,9 +51,8 @@ namespace _2020_Nhom16_TH1_18120634
     {
       LoadTypeList();
       dgvUpdateList.DataSource = payHistoryUpdateBS;
-      payHistoryUpdateBS.DataSource = EmployeeDAL.Instance.GetEmployeePayHistoryList();
-      AddBindingUpdate();
       LoadShiftTypeList();
+      LoadStatisticYearList();
     }
 
     // Load các loại danh sách vào trong comboBox
@@ -111,6 +110,20 @@ namespace _2020_Nhom16_TH1_18120634
       cbShiftSearch.DataSource = ShiftDAL.Instance.GetShiftTypeList();
       cbShiftSearch.DisplayMember = "Name";
     }
+
+    //lấy danh sách năm cần thống kê
+    void LoadStatisticYearList()
+    {
+      List<string> yearList = new List<string>();
+      DataTable result = EmployeeDAL.Instance.GetStatisticYearList();
+      foreach (DataRow row in result.Rows)
+      {
+        yearList.Add(row["year"].ToString());
+      }
+      cbStatisticYear.DataSource = yearList;
+      cbStatisticYear.SelectedIndex = -1;
+      cbxYearStatistic.Checked = true;
+    }
     #endregion
 
     #region event
@@ -145,6 +158,13 @@ namespace _2020_Nhom16_TH1_18120634
       {
         txbCurrentFlagUpdate.Text = "Đã nghỉ việc";
       }
+    }
+
+    // Load Tab Update Salary
+    private void mainTabControl_Enter(object sender, EventArgs e)
+    {
+      payHistoryUpdateBS.DataSource = EmployeeDAL.Instance.GetEmployeePayHistoryList();
+      AddBindingUpdate();
     }
 
     //update lương nhân viên
@@ -208,8 +228,10 @@ namespace _2020_Nhom16_TH1_18120634
     //tìm kiếm nhân viên đa điều kiện
     private void btnTabSearch_Click(object sender, EventArgs e)
     {
+      int nItemCbShift = cbShiftSearch.Items.Count;
+      int selectedItem = cbShiftSearch.SelectedIndex + 1;
       string deparmentId = txbDepartmentSearch.Text != "" ? txbDepartmentSearch.Text : "NULL";
-      string shiftId = (cbShiftSearch.SelectedIndex + 1).ToString();
+      string shiftId = nItemCbShift == selectedItem ? "NULL" : selectedItem.ToString();
       string gender = rbGenderBoth.Checked ? "NULL" : (rbGenderF.Checked ? "F" : "M");
       DataTable result = EmployeeDAL.Instance.SearchEmployee(deparmentId, shiftId, gender);
 
@@ -234,10 +256,13 @@ namespace _2020_Nhom16_TH1_18120634
           shiftResultDisplay = "Ban ngày";
           break;
         case "2":
+          shiftResultDisplay = "Chiều tối";
+          break;
+        case "3":
           shiftResultDisplay = "Ban đêm";
           break;
         default:
-          shiftResultDisplay = "Chiều tối";
+          shiftResultDisplay = "Tất cả";
           break;
       }
 
@@ -275,6 +300,67 @@ namespace _2020_Nhom16_TH1_18120634
         return;
       MessageBox.Show("Hình thức nhận không hợp lệ!", "Cảnh báo");
       txbPayFreqUpdate.Text = "1";
+    }
+
+    private void txbEmpIdStatistic_Validating(object sender, CancelEventArgs e)
+    {
+      int outNum;
+      if (txbEmpIdStatistic.Text != "" && !Int32.TryParse(txbEmpIdStatistic.Text, out outNum))
+      {
+        MessageBox.Show("ID Nhân Viên là một số !", "Thông báo");
+        txbEmpIdStatistic.Text = "";
+      }
+    }
+
+    private void cbxYearStatistic_CheckedChanged(object sender, EventArgs e)
+    {
+      if (cbxYearStatistic.Checked)
+      {
+        cbStatisticYear.Enabled = false;
+        cbStatisticYear.SelectedIndex = -1;
+      }
+      else
+      {
+        cbStatisticYear.Enabled = true;
+        cbStatisticYear.SelectedIndex = 0;
+      }
+    }
+
+    //Thống kê lương
+    private void btnStatistic_Click(object sender, EventArgs e)
+    {
+      string employeeId = txbEmpIdStatistic.Text;
+      if(employeeId == "")
+      {
+        MessageBox.Show("Nhập Id nhân viên");
+        return;
+      }
+      lbResultStatistic.Text = $"Kết quả thống kê cho nhân viên có ID = {employeeId}";
+      //Thống kê 1 năm cụ thể
+      if (!cbxYearStatistic.Checked)
+      {
+        string year = cbStatisticYear.SelectedValue.ToString();
+        DataTable result = EmployeeDAL.Instance.GetSalaryInYear(employeeId, year);
+        if(result != null)
+        {
+          dgvStatistic.DataSource = result;
+        }
+      }
+      else
+      {
+        DataTable result = EmployeeDAL.Instance.GetSalaryEachForYear(employeeId);
+        if (result != null)
+        {
+          dgvStatistic.DataSource = result;
+        }
+      }
+    }
+
+    //Load Connect Form
+    private void tbcConnectDB_Enter(object sender, EventArgs e)
+    {
+      FormConnectDB f = new FormConnectDB();
+      f.ShowDialog();
     }
   }
 }

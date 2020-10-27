@@ -13,7 +13,7 @@ namespace _2020_Nhom16_TH1_18120634
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new MainForm());
+      Application.Run(new FormConnectDB());
     }
   }
 }

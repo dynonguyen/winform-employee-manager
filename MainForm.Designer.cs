@@ -220,12 +220,13 @@
       // 
       // btnStatistic
       // 
+      this.btnStatistic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
       this.btnStatistic.Location = new System.Drawing.Point(753, 24);
       this.btnStatistic.Name = "btnStatistic";
       this.btnStatistic.Size = new System.Drawing.Size(146, 37);
       this.btnStatistic.TabIndex = 5;
       this.btnStatistic.Text = "Thống kê";
-      this.btnStatistic.UseVisualStyleBackColor = true;
+      this.btnStatistic.UseVisualStyleBackColor = false;
       this.btnStatistic.Click += new System.EventHandler(this.btnStatistic_Click);
       // 
       // panel7
@@ -255,6 +256,7 @@
       // cbStatisticYear
       // 
       this.cbStatisticYear.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+      this.cbStatisticYear.BackColor = System.Drawing.SystemColors.Control;
       this.cbStatisticYear.DropDownHeight = 100;
       this.cbStatisticYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.cbStatisticYear.Enabled = false;
@@ -280,6 +282,7 @@
       this.dgvStatistic.AllowUserToAddRows = false;
       this.dgvStatistic.AllowUserToDeleteRows = false;
       this.dgvStatistic.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+      this.dgvStatistic.BackgroundColor = System.Drawing.SystemColors.Control;
       this.dgvStatistic.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dgvStatistic.Location = new System.Drawing.Point(20, 177);
       this.dgvStatistic.Name = "dgvStatistic";
@@ -336,6 +339,7 @@
       this.dgvSearchResult.AllowUserToAddRows = false;
       this.dgvSearchResult.AllowUserToDeleteRows = false;
       this.dgvSearchResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+      this.dgvSearchResult.BackgroundColor = System.Drawing.SystemColors.Control;
       this.dgvSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dgvSearchResult.Location = new System.Drawing.Point(0, 207);
       this.dgvSearchResult.Name = "dgvSearchResult";
@@ -365,12 +369,13 @@
       // 
       // btnTabSearch
       // 
+      this.btnTabSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
       this.btnTabSearch.Location = new System.Drawing.Point(809, 17);
       this.btnTabSearch.Name = "btnTabSearch";
       this.btnTabSearch.Size = new System.Drawing.Size(127, 44);
       this.btnTabSearch.TabIndex = 5;
       this.btnTabSearch.Text = "Tìm Kiếm";
-      this.btnTabSearch.UseVisualStyleBackColor = true;
+      this.btnTabSearch.UseVisualStyleBackColor = false;
       this.btnTabSearch.Click += new System.EventHandler(this.btnTabSearch_Click);
       // 
       // panel20
@@ -524,13 +529,14 @@
       // 
       // btnUpdate
       // 
+      this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
       this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnUpdate.Location = new System.Drawing.Point(673, 579);
       this.btnUpdate.Name = "btnUpdate";
       this.btnUpdate.Size = new System.Drawing.Size(271, 46);
       this.btnUpdate.TabIndex = 0;
       this.btnUpdate.Text = "Cập Nhật";
-      this.btnUpdate.UseVisualStyleBackColor = true;
+      this.btnUpdate.UseVisualStyleBackColor = false;
       this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
       // 
       // label4
@@ -690,12 +696,13 @@
       // 
       // btnSearchUpdate
       // 
+      this.btnSearchUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
       this.btnSearchUpdate.Location = new System.Drawing.Point(316, 9);
       this.btnSearchUpdate.Name = "btnSearchUpdate";
       this.btnSearchUpdate.Size = new System.Drawing.Size(97, 32);
       this.btnSearchUpdate.TabIndex = 2;
       this.btnSearchUpdate.Text = "Tìm Kiếm";
-      this.btnSearchUpdate.UseVisualStyleBackColor = true;
+      this.btnSearchUpdate.UseVisualStyleBackColor = false;
       this.btnSearchUpdate.Click += new System.EventHandler(this.btnSearchUpdate_Click);
       // 
       // label2
@@ -713,6 +720,7 @@
       this.dgvUpdateList.AllowUserToAddRows = false;
       this.dgvUpdateList.AllowUserToDeleteRows = false;
       this.dgvUpdateList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+      this.dgvUpdateList.BackgroundColor = System.Drawing.SystemColors.Control;
       this.dgvUpdateList.Location = new System.Drawing.Point(6, 6);
       this.dgvUpdateList.Name = "dgvUpdateList";
       this.dgvUpdateList.ReadOnly = true;
@@ -735,12 +743,13 @@
       // 
       // btnRefreshList
       // 
+      this.btnRefreshList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
       this.btnRefreshList.Location = new System.Drawing.Point(330, 16);
       this.btnRefreshList.Name = "btnRefreshList";
       this.btnRefreshList.Size = new System.Drawing.Size(112, 24);
       this.btnRefreshList.TabIndex = 3;
       this.btnRefreshList.Text = "Refresh";
-      this.btnRefreshList.UseVisualStyleBackColor = true;
+      this.btnRefreshList.UseVisualStyleBackColor = false;
       this.btnRefreshList.Click += new System.EventHandler(this.btnRefreshList_Click);
       // 
       // dgvShowList
@@ -748,6 +757,7 @@
       this.dgvShowList.AllowUserToAddRows = false;
       this.dgvShowList.AllowUserToDeleteRows = false;
       this.dgvShowList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+      this.dgvShowList.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
       this.dgvShowList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.dgvShowList.CausesValidation = false;
       this.dgvShowList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;

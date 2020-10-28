@@ -49,7 +49,7 @@
       // panel1
       // 
       this.panel1.Controls.Add(this.label1);
-      this.panel1.Location = new System.Drawing.Point(56, 12);
+      this.panel1.Location = new System.Drawing.Point(58, 21);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(430, 51);
       this.panel1.TabIndex = 5;
@@ -79,7 +79,7 @@
       this.tbxServerName.MaxLength = 500;
       this.tbxServerName.Multiline = true;
       this.tbxServerName.Name = "tbxServerName";
-      this.tbxServerName.Size = new System.Drawing.Size(390, 27);
+      this.tbxServerName.Size = new System.Drawing.Size(390, 26);
       this.tbxServerName.TabIndex = 0;
       this.tbxServerName.Text = ".";
       // 
@@ -104,23 +104,25 @@
       // 
       // btnConnect
       // 
+      this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
       this.btnConnect.Location = new System.Drawing.Point(197, 14);
       this.btnConnect.Name = "btnConnect";
       this.btnConnect.Size = new System.Drawing.Size(103, 34);
       this.btnConnect.TabIndex = 2;
       this.btnConnect.Text = "Kết Nối";
-      this.btnConnect.UseVisualStyleBackColor = true;
+      this.btnConnect.UseVisualStyleBackColor = false;
       this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
       // 
       // btnExit
       // 
+      this.btnExit.BackColor = System.Drawing.SystemColors.Control;
       this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
       this.btnExit.Location = new System.Drawing.Point(324, 14);
       this.btnExit.Name = "btnExit";
       this.btnExit.Size = new System.Drawing.Size(103, 34);
       this.btnExit.TabIndex = 3;
       this.btnExit.Text = "Thoát";
-      this.btnExit.UseVisualStyleBackColor = true;
+      this.btnExit.UseVisualStyleBackColor = false;
       this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
       // 
       // panel3
@@ -134,11 +136,11 @@
       // 
       // txbDBName
       // 
-      this.txbDBName.Location = new System.Drawing.Point(117, 20);
+      this.txbDBName.Location = new System.Drawing.Point(117, 21);
       this.txbDBName.MaxLength = 500;
       this.txbDBName.Multiline = true;
       this.txbDBName.Name = "txbDBName";
-      this.txbDBName.Size = new System.Drawing.Size(390, 27);
+      this.txbDBName.Size = new System.Drawing.Size(390, 26);
       this.txbDBName.TabIndex = 1;
       this.txbDBName.Text = "EmployeeMng2012";
       // 
